@@ -46,3 +46,6 @@ Route::get('/getContactsbyId/{contact_id}', [App\Http\Controllers\ContactControl
 
 //Crear contact
 Route::post('/createContact', [App\Http\Controllers\ContactController::class, 'createContact']);
+
+//eliminar contact
+Route::post('/deleteContact', [App\Http\Controllers\ContactController::class, 'deleteContact']);

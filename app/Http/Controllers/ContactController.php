@@ -300,4 +300,82 @@ class ContactController extends Controller
         return response()->json($data, $data['code']);  
 
     }
+
+    public function deleteContact(Request $request){
+
+        if ( is_array($request->all())  ){
+            $rules = [
+                'contact_id' => 'required|exists:contacts,id'                  
+             ];
+
+            try {
+                 $validator = \Validator::make($request->all(), $rules);
+
+                if ($validator->fails()){
+                    // error en los datos ingresados
+                    $data = array(
+                     'status' => 'error',
+                     'code'   => '200',
+                     'errors'  => $validator->errors()->all()
+                    );
+                }else{            
+                        $contact = Contact::find( $request->contact_id );
+
+ 
+                    if( is_object($contact) && !empty($contact)){                
+           
+
+                        $phone = Phone::find( $request->contact_id );
+                        
+                        if( is_object($phone) && !empty($phone)){    
+                            $phone->delete();      
+                        }
+
+                        $email = Email::find( $request->contact_id );
+                        
+                        if( is_object($email) && !empty($email)){    
+                            $email->delete();      
+                        }
+
+                        $address = Address::find( $request->contact_id );
+
+                        if( is_object($address) && !empty($address)){    
+                            $address->delete();      
+                        }
+
+
+
+                        $contact->delete(); 
+
+                        $data = array(
+                         'status' => 'success',
+                         'code'   => '200',
+                         'message' => 'contacto eliminado correctamente'                
+                        );
+                    }else{
+                        $data = array(
+                         'status' => 'error',
+                         'code'   => '200',
+                         'message' => 'id no existe'
+                        );
+                    }            
+                }
+            }catch (Exception $e){
+                $data = array(
+                 'status' => 'error',
+                 'code'   => '200',
+                 'message' => 'Los datos enviados no son correctos, ' . $e
+                );
+            }       
+
+        }else{
+            $data = array(
+                'status' => 'error',
+                'code'   => '200',
+                'message' => 'datos vacios'
+            );
+        }
+        
+        return response()->json($data, $data['code']);   
+    }
 }
