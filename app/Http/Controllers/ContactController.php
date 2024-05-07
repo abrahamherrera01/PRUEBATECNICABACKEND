@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Phone;
+use App\Models\Email;
+use App\Models\Address;
 
 
 class ContactController extends Controller
@@ -246,16 +248,28 @@ class ContactController extends Controller
                     $contact->lastname = $request->lastname;            
                     $contact->save(); 
 
-             
+                    //id del contacto para crear las demas
                     $contact_id =$contact->id;
  
                     if(!empty($request->phone)){   
- 
                         $phone = new Phone();
                         $phone->phone = $request->phone;  
-                        $phone->contact_id = $request->$contact_id; 
+                        $phone->contact_id = $contact_id; 
                         $phone->save();           
+                    } 
 
+                    if(!empty($request->email)){   
+                        $email = new Email();
+                        $email->email = $request->email;  
+                        $email->contact_id = $contact_id; 
+                        $email->save();           
+                    } 
+
+                    if(!empty($request->address)){   
+                        $address = new Address();
+                        $address->address = $request->address;  
+                        $address->contact_id = $contact_id; 
+                        $address->save();           
                     } 
 
 
