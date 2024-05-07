@@ -74,8 +74,7 @@ class AddressController extends Controller
  
         if ( is_array($request->all())  ){
             $rules = [
-                'contact_id' => 'required|exists:contacts,id',                    
-                'address' => 'max:255|string|required',    
+                 'address' => 'max:255|string|required',    
             ];
 
             try {
@@ -92,7 +91,6 @@ class AddressController extends Controller
                     $address = Address::find( $id );
 
                     if( is_object($address) && !empty($address)){                
-                        $address->contact_id = $request->contact_id;
                         $address->address = $request->address;
                         $address->save(); 
 

@@ -73,8 +73,7 @@ class EmailController extends Controller
  
         if ( is_array($request->all())  ){
             $rules = [
-                'contact_id' => 'required|exists:contacts,id',                    
-                'email' => 'max:255|string|required'   
+                 'email' => 'max:255|string|required'   
             ];
 
             try {
@@ -91,8 +90,7 @@ class EmailController extends Controller
                         $email = Email::find( $id );
 
  
-                    if( is_object($email) && !empty($email)){                
-                        $email->contact_id = $request->contact_id;
+                    if( is_object($email) && !empty($email)){                 
                         $email->email = $request->email;
                         $email->save(); 
 

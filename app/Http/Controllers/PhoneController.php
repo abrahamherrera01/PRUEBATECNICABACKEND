@@ -75,8 +75,7 @@ class PhoneController extends Controller
  
         if ( is_array($request->all())  ){
             $rules = [
-                'contact_id' => 'required|exists:contacts,id',                    
-                'phone' => 'max:255|string|required'   
+                 'phone' => 'max:255|string|required'   
             ];
 
             try {
@@ -94,8 +93,7 @@ class PhoneController extends Controller
 
  
                     if( is_object($phone) && !empty($phone)){                
-                        $phone->contact_id = $request->contact_id;
-                        $phone->phone = $request->phone;
+                         $phone->phone = $request->phone;
                         $phone->save(); 
 
                         $data = array(
