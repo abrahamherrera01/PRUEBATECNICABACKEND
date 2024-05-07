@@ -256,7 +256,7 @@ class ContactController extends Controller
                         $phone->contact_id = $request->$contact_id; 
                         $phone->save();           
 
-                    }
+                    } 
 
 
 
