@@ -22,6 +22,10 @@ class PhoneSeeder extends Seeder
                 'contact_id' => $contact->id,
                 'phone' => $this->generatePhoneNumber(),
             ]);
+            Phone::create([
+                'contact_id' => $contact->id,
+                'phone' => $this->generatePhoneNumber(),
+            ]);
         }
     }
 

@@ -22,6 +22,10 @@ class EmailSeeder extends Seeder
                 'contact_id' => $contact->id,
                 'email' => $this->generateEmail($contact->name),
             ]);
+            Email::create([
+                'contact_id' => $contact->id,
+                'email' => $this->generateEmail($contact->name),
+            ]);
         }
     }
 

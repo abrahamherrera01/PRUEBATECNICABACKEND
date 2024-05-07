@@ -64,3 +64,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+para ejecutar las semillas y llenar la base de datos se debe de ejecutar una por una empezando por la de contacts 
+php artisan db:seed --class=ContactsSeeder   
+php artisan db:seed --class=AddressSeeder  
+php artisan db:seed --class=EmailSeeder  
+php artisan db:seed --class=PhoneSeeder 

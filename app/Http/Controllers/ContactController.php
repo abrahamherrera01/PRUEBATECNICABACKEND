@@ -192,7 +192,10 @@ class ContactController extends Controller
 
     public function getContacts(){
         $contact = Contact::
-        with('emails','phones','address')->get();
+        with('emails','phones','address')
+        ->orderByDesc('id')
+        ->take(100)
+        ->get();
 
         $data = array (
             'code' => 200,
